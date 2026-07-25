@@ -1,9 +1,10 @@
 require('dotenv').config();
 
 // Add this fallback
-if (!process.env.JWT_SECRET) {
-  console.warn('⚠️  JWT_SECRET not set in environment. Using default (insecure).');
-  process.env.JWT_SECRET = 'default_secret_change_me';
+const JWT_SECRET = process.env.JWT_SECRET;
+if (!JWT_SECRET) {
+  console.error('FATAL ERROR: JWT_SECRET is not defined in environment variables.');
+  process.exit(1);
 }
 const express = require('express');
 const cors = require('cors');
