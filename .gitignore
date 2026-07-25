@@ -1,8 +1,6 @@
-node_modules/
-dist/
+# Environment variables (explicit paths)
+server/.env
+client/.env
 .env
-*.log
-.DS_Store
-
-.vercel
-.env*
+.env.local
+.env.*.local
