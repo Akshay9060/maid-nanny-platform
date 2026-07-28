@@ -19,7 +19,7 @@ const seed = async () => {
   try {
     await connectDB();
     console.log('Connected to DB. Clearing existing data...');
-    
+
     // Clear collections (optional - use with caution in production)
     await User.deleteMany({});
     await Helper.deleteMany({});
@@ -51,15 +51,15 @@ const seed = async () => {
     });
 
     console.log('Creating helper profile...');
-const helperProfile = await Helper.create({
-  user: helperUser._id,               // use "user", not "userId"
-  city: 'Mumbai',                     // required – choose any city
-  serviceType: 'cleaning',            // required – choose one that matches your enum
-  skills: ['Cleaning', 'Cooking'],    // optional, keep if your schema allows
-  experience: 2,                      // optional, keep if allowed
-  hourlyRate: 25,                     // optional, keep if allowed
-  isAvailable: true,                  // optional, keep if allowed
-});
+    const helperProfile = await Helper.create({
+      user: helperUser._id,               // use "user", not "userId"
+      city: 'Mumbai',                     // required – choose any city
+      serviceType: 'maid',
+      skills: ['Cleaning', 'Cooking'],    // optional, keep if your schema allows
+      experienceYears: 2,                     // optional, keep if allowed
+      hourlyRate: 25,                     // optional, keep if allowed
+      isAvailableForBooking: true,                 // optional, keep if allowed
+    });
 
     console.log('Creating booking...');
     await Booking.create({
