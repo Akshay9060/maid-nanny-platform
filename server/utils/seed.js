@@ -63,11 +63,12 @@ const seed = async () => {
 
     console.log('Creating booking...');
     await Booking.create({
-      householdId: household._id,
-      helperId: helperUser._id,
-      date: new Date(),
-      status: 'pending',
-      totalPrice: 100,
+      household: household._id,              // ✅ correct field name
+      helper: helperUser._id,                // ✅ correct field name
+      startDate: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000), // ✅ startDate (e.g., 7 days from now)
+      price: 100,                            // ✅ price (or totalPrice)
+      servicePlan: 'hourly',                 // ✅ required – choose valid enum from your schema
+      status: 'pending',                     // optional (may have default)
     });
 
     console.log('✅ Seeding completed successfully!');
