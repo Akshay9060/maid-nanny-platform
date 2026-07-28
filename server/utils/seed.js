@@ -51,13 +51,15 @@ const seed = async () => {
     });
 
     console.log('Creating helper profile...');
-    const helperProfile = await Helper.create({
-      userId: helperUser._id,
-      skills: ['Cleaning', 'Cooking'],
-      experience: 2,
-      hourlyRate: 25,
-      isAvailable: true,
-    });
+const helperProfile = await Helper.create({
+  user: helperUser._id,               // use "user", not "userId"
+  city: 'Mumbai',                     // required – choose any city
+  serviceType: 'cleaning',            // required – choose one that matches your enum
+  skills: ['Cleaning', 'Cooking'],    // optional, keep if your schema allows
+  experience: 2,                      // optional, keep if allowed
+  hourlyRate: 25,                     // optional, keep if allowed
+  isAvailable: true,                  // optional, keep if allowed
+});
 
     console.log('Creating booking...');
     await Booking.create({
